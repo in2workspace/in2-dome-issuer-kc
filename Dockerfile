@@ -8,11 +8,15 @@ RUN echo "nonroot:x:1000:1000:Non-root user:/home/nonroot:/sbin/nologin" >> /etc
     && echo "nonroot:x:1000:" >> /etc/group \
     && mkdir -p /home/nonroot \
     && chown -R 1000:1000 /home/nonroot
-USER nonroot
 
 # Copy the theme and realm files into the image
 COPY /themes /opt/keycloak/themes
 COPY /data/import/CredentialIssuer-realm.json /opt/keycloak/data/import/
+
+# Ensure nonroot user has permissions to modify the import directory
+RUN chown -R 1000:1000 /opt/keycloak/data/import
+
+USER nonroot
 
 
 # Command to start Keycloak
