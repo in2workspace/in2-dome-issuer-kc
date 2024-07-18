@@ -9,6 +9,9 @@ RUN echo "nonroot:x:1000:1000:Non-root user:/home/nonroot:/sbin/nologin" >> /etc
     && mkdir -p /home/nonroot \
     && chown -R 1000:1000 /home/nonroot
 
+# Define build argument
+ARG ENVIRONMENT
+
 # Copy the theme files into the image
 COPY /themes /opt/keycloak/themes
 
