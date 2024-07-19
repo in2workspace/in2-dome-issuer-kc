@@ -1,5 +1,4 @@
-# Start with the official Keycloak image from Quay.io (https://quay.io/repository/keycloak/keycloak?tab=tags)
-# FROM laura:latest
+# Start with the official Keycloak image from Quay.io
 FROM in2workspace/issuer-keycloak-plugin:v1.1.0
 
 # Create non-root user and group manually
@@ -26,13 +25,13 @@ RUN mkdir -p /opt/keycloak/data/import && chown -R 1000:1000 /opt/keycloak/data/
 
 # Conditionally copy the correct realm file based on the environment
 RUN if [ "$ENVIRONMENT" = "lcl" ]; then \
-      cp /tmp/in2-dome-realm-lcl.json /opt/keycloak/data/import/in2-dome-realm-lcl.json; \
+      cp /tmp/in2-dome-realm-lcl.json /opt/keycloak/data/import/CredentialIssuer-realm.json; \
     elif [ "$ENVIRONMENT" = "sbx" ]; then \
-      cp /tmp/in2-dome-realm-sbx.json /opt/keycloak/data/import/in2-dome-realm-sbx.json; \
+      cp /tmp/in2-dome-realm-sbx.json /opt/keycloak/data/import/CredentialIssuer-realm.json; \
     elif [ "$ENVIRONMENT" = "dev" ]; then \
-      cp /tmp/in2-dome-realm-dev.json /opt/keycloak/data/import/in2-dome-realm-dev.json; \
+      cp /tmp/in2-dome-realm-dev.json /opt/keycloak/data/import/CredentialIssuer-realm.json; \
     elif [ "$ENVIRONMENT" = "prd" ]; then \
-      cp /tmp/in2-dome-realm-prd.json /opt/keycloak/data/import/in2-dome-realm-prd.json; \
+      cp /tmp/in2-dome-realm-prd.json /opt/keycloak/data/import/CredentialIssuer-realm.json; \
     else \
       echo "Unknown environment: $ENVIRONMENT"; \
       exit 1; \
@@ -41,7 +40,17 @@ RUN if [ "$ENVIRONMENT" = "lcl" ]; then \
 # Clean up temporary files
 RUN rm /tmp/in2-dome-realm-*.json
 
+# Ensure correct permissions for the nonroot user
+RUN chown -R 1000:1000 /opt/keycloak/data/import
+
+# Copy the SMTP init script into the image
+COPY issuer-keycloak-smtp-init.sh /opt/keycloak/bin/issuer-keycloak-smtp-init.sh
+
+# Ensure the script has execution permissions
+RUN chmod +x /opt/keycloak/bin/issuer-keycloak-smtp-init.sh
+
+# Switch to non-root user
 USER nonroot
 
-# Command to start Keycloak
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start-dev", "--health-enabled=true", "--metrics-enabled=true", "--log-level=INFO", "--import-realm"]
+# Command to run the initialization script and then start Keycloak
+ENTRYPOINT ["/opt/keycloak/bin/issuer-keycloak-smtp-init.sh"]

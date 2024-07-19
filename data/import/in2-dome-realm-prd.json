@@ -1771,7 +1771,9 @@
     "from" : "digitalidentitysupport@dome-marketplace.eu",
     "fromDisplayName" : "Digital Identity Support Dome",
     "envelopeFrom" : "",
-    "ssl" : "false"
+    "ssl" : "false",
+    "user": "",
+    "password": ""
   },
   "loginTheme" : "custom",
   "eventsEnabled" : false,
