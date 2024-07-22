@@ -34,27 +34,7 @@ jobs:
       - name: Build and Push docker image
         run: |
           IMAGE_TAG="$PROJECT_NAME:v$VERSION$SUFFIX"
-          echo "DOCKER_HUB_CLIENT_NAME: $DOCKER_HUB_CLIENT_NAME"
-          echo "DOCKER_USERNAME: $DOCKER_USERNAME"
-          echo "PROJECT_NAME: $PROJECT_NAME"
-          echo "VERSION: $VERSION"
-          echo "SUFFIX: $SUFFIX"
-            
-            if [ -z "$DOCKER_HUB_CLIENT_NAME" ]; then
-          echo "Error: DOCKER_HUB_CLIENT_NAME is not set."
-            exit 1
-            fi
-            
-            if [ -z "$DOCKER_USERNAME" ]; then
-          echo "Error: DOCKER_USERNAME is not set."
-            exit 1
-            fi
-            
-            if [ -z "$DOCKER_PASSWORD" ]; then
-          echo "Error: DOCKER_PASSWORD is not set."
-            exit 1
-            fi
-          docker build --file Dockerfile --build-arg SKIP_TESTS=true --tag $DOCKER_HUB_CLIENT_NAME/$IMAGE_TAG .
+          docker build --file Dockerfile --build-arg SKIP_TESTS=true --build-arg ENVIRONMENT=lcl --tag $DOCKER_HUB_CLIENT_NAME/$IMAGE_TAG .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push $DOCKER_HUB_CLIENT_NAME/$IMAGE_TAG
         env:
