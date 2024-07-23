@@ -1,4 +1,4 @@
-name: Release prd
+name: Release PRD
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  build-prd:
-    name: build-prd
+  release-prd:
+    name: release-prd
     runs-on: ubuntu-latest
     environment: prd
 
