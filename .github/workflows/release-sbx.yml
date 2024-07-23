@@ -1,4 +1,4 @@
-name: Release sbx
+name: Release SBX
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  build-sbx:
-    name: build-sbx
+  release-sbx:
+    name: release-sbx
     runs-on: ubuntu-latest
     environment: sbx
 
