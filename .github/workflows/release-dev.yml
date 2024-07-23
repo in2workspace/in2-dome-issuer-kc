@@ -1,4 +1,4 @@
-name: Release dev
+name: Release DEV
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  build-dev:
-    name: build-dev
+  release-dev:
+    name: release-dev
     runs-on: ubuntu-latest
     environment: dev
 
