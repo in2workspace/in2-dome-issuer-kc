@@ -1,4 +1,4 @@
-name: Release lcl
+name: Release LCL
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  build-lcl:
-    name: build-lcl
+  release-lcl:
+    name: release-lcl
     runs-on: ubuntu-latest
     environment: lcl
 
