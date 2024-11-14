@@ -11,6 +11,29 @@ body {
   background-color: #dde6f6;
 }
 
+.login-pf-header, .login-pf-header + p {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.kc-social-providers .pf-c-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #2d58a7;
+}
+
+.kc-social-providers .pf-c-button:hover {
+  background-color: #cadcee;
+}
+
 .login-pf-page-header {
   text-align: center;
   font-size: 2rem;
