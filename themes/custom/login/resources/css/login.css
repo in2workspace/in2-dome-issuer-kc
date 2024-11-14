@@ -19,15 +19,20 @@ body {
 }
 
 .kc-social-links .pf-c-button.kc-social-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
   color: #ffffff;
   background-color: #2d58a7;
   border-radius: 5px;
+  width: auto;
+  max-width: 100%;
+}
+
+.kc-social-provider-name {
+  white-space: nowrap;
 }
 
 .kc-social-links .pf-c-button.kc-social-item:hover {
