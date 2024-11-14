@@ -11,28 +11,36 @@ body {
   background-color: #dde6f6;
 }
 
-.login-pf-header, .login-pf-header + p {
+#kc-social-providers h2 {
   text-align: center;
-  margin-top: 1rem;
   font-size: 1rem;
   font-weight: bold;
+  margin-bottom: 1rem;
 }
 
-.kc-social-providers .pf-c-button {
-  display: inline-flex;
+.kc-social-links .pf-c-button.kc-social-item {
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
-  border-radius: 5px;
   color: #ffffff;
   background-color: #2d58a7;
+  border-radius: 5px;
 }
 
-.kc-social-providers .pf-c-button:hover {
+.kc-social-links .pf-c-button.kc-social-item:hover {
   background-color: #cadcee;
 }
+
+.kc-social-provider-name {
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 
 .login-pf-page-header {
   text-align: center;
