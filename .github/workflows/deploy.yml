@@ -12,7 +12,7 @@ jobs:
   deploy-prod:
     name: deploy-prod
     runs-on: ubuntu-latest
-    environment: prod
+    environment: prd
 
     steps:
       - name: Checkout Repository
