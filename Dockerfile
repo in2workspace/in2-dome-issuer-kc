@@ -1,6 +1,6 @@
 # Start with the official Keycloak image from Quay.io (https://quay.io/repository/keycloak/keycloak?tab=tags)
 # FROM laura:latest
-FROM in2workspace/issuer-keycloak-plugin:v1.1.0
+FROM in2workspace/in2-keycloak-extension:v1.1.1-ga
 
 # Create non-root user and group manually
 USER root
